@@ -20,27 +20,41 @@ export default class Character extends React.Component{
     state = {
         pagination: this.props.pagination,
         users: [],
+        isLoading: true
     }
+
 
     loadPage = async() =>{
         const response = await CharacterAPI.get(`/?page=${this.pageLoad}`);
         this.setState({
             users: response.data.results,
+            isLoading: false
         })
     }
 
     prevPage = () => {
         this.pageLoad--;
         this.loadPage();
+
+        this.setState({
+            isLoading:true
+        });
     }
 
     nextPage = () => {
         this.pageLoad++;
         this.loadPage();
+
+        this.setState({
+            isLoading:true
+        });
     }
+
+    isLoadingImage = "./loading.gif";
 
     render(){
             return (
+                this.state.isLoading ? <Style.LoadingImg src={this.isLoadingImage} alt="loading"/> :
                 <Style.Wrapper>
                     <Style.UserInfo>
                         { this.state.users.map((user, index) => {

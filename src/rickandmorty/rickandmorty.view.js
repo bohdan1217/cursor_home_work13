@@ -33,6 +33,11 @@ export default {
     ButtonDiv: styled.div`
         text-align: center;
     `,
+    LoadingImg: styled.img`
+        display: block;
+        margin: 0 auto;
+        width: auto;
+    `,
     Name: styled.div`
         font-size: 18px;
         display: flex;
